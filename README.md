@@ -13,7 +13,7 @@
     * Nom : Matrix1-Client
     * Matériel : 1 Go de RAM ; Disque 10 Go
 
-TEST
+TEST tredtfigyvbyi
 
 2. Communiquez les deux serveurs (Serveur et client), à l'aide de deux adaptateurs réseau. Cherchez comment faire...
 
