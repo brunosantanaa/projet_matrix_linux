@@ -42,6 +42,8 @@
 
 **Date de Présentation: 24 Janvier   5 PM**
 
+[Guide de l'utilisateur](https://github.com/projet_matrix_ssh/Guide)
+
 
 
 
