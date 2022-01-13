@@ -4,7 +4,7 @@
 
 ## Ce sont les tâches à accomplir pour votre projet;
 
-1. Installez deux systèmes d’exploitation Linux virtuels sur Oracle VM ;\
+1. Installez deux systèmes d’exploitation Linux virtuels sur Oracle VM ;
 
   - Serveur Linux - Ubuntu
     * Nom : Matrix1-Serveur
@@ -41,6 +41,8 @@
 5.  présenter des exemples de transfert de fichiers.
 
 **Date de Présentation: 24 Janvier   5 PM**
+
+# Projet - kbm
 
 [Guide de l'utilisateur](https://github.com/brunosantanaa/projet_matrix_ssh/tree/bruno/Guide)
 
