@@ -1,0 +1,10 @@
+total 16
+drwxr-xr-x   9 bruno_s  staff   288 12 jan 21:38 .
+drwxr-xr-x  20 bruno_s  staff   640 12 jan 21:03 ..
+drwxr-xr-x  17 bruno_s  staff   544 12 jan 21:32 .git
+drwxr-xr-x   3 bruno_s  staff    96  1 déc 15:07 Guide
+-rw-r--r--   1 bruno_s  staff  1415 12 jan 19:37 README.md
+drwxr-xr-x   3 bruno_s  staff    96 12 jan 21:23 data
+-rw-r--r--   1 bruno_s  staff     0 12 jan 21:38 fichierTransfer.txt
+-rwxr-xr-x   1 bruno_s  staff  2391 12 jan 21:37 main.sh
+drwxr-xr-x   6 bruno_s  staff   192 12 jan 21:29 src
