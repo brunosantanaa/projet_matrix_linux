@@ -12,7 +12,7 @@
 #
 
 echo "---> Creating CKSUM file..."
-case $1
+case $1 in
 0)
   SHA_CLIENT=`cksum $2 | cut -d" " -f1`
   ;;
@@ -28,3 +28,5 @@ case $1
   ;;
 *)
   echo "COMMAND ERROR"
+ ;;
+ esac

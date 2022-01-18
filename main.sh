@@ -67,7 +67,7 @@ read_option(){
 		$SRC/validate.sh $logFile $fileName | tee -a $logFile
 		wait ;;
   3) 
-		CKSUM=$SRC/cksum.sh 0 $fileName | tee -a $logFile
+		$SRC/cksum.sh 0 $fileName > CHECKSUM | tee -a $logFile
 		wait ;;
   4) 
 		$SRC/send.sh $logFile $serverUser $IP $fileName | tee -a $logFile
