@@ -1,8 +1,12 @@
 #!/bin/bash
-# Script Projet from Linux Class Matrix College.
-# by Kevin Bruno Mario
+# Script: cksum.sh
+# Author: Bruno de Santana | Kevin Clovel | Mario Camelo
 # Date: 24/01/2022
-
+# Description: 
+#	Script Projet from Linux Class Matrix College.
+#
+#
+#
 ###
 #Variables
 PWD=$(pwd)
