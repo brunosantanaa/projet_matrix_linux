@@ -15,8 +15,8 @@ DATA+=$PWD/data
 fileName=fichierTransfer.txt
 logFile=$DATA/script.log
 
-serverUser=matrix1-serveur
-IP=server
+serverUser=matrix1serveur
+IP=192.168.56.103
 
 ###
 # Function to VIEW Menu
@@ -64,7 +64,7 @@ read_option(){
 		$SRC/validate.sh $logFile $fileName | tee -a $logFile
 		wait ;;
   3) 
-		$SRC/cksum.sh  | tee -a $logFile
+		$SRC/cksum.sh $logFile $serverUser $IP $fileName | tee -a $logFile
 		wait ;;
   4) 
 		$SRC/send.sh $logFile $serverUser $IP $fileName | tee -a $logFile

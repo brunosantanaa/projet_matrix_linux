@@ -9,10 +9,10 @@
 #
 
 echo "---> Creating CKSUM file..."
-SHA_SERVEUR=`ssh $1@$2 "sha256sum $3"`
-SHA_CLIENT=`sha256sum $3`
+SHA_SERVEUR=`ssh $2@$3 "cksum $4 | cut -d' ' -f1"`
+SHA_CLIENT=`cksum $4 | cut -d" " -f1`
 
-if [ SHA_SERVEUR = SHA_CLIENT ]
+if [ $SHA_SERVEUR = $SHA_CLIENT ]
 then
   echo "Transfert effectué avec succès"
 else

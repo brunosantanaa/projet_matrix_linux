@@ -1,0 +1,12 @@
+total 36
+drwxrwxr-x  6 bruno bruno 4096 Jan 18 13:19 .
+drwxr-xr-x 31 bruno bruno 4096 Jan 18 13:00 ..
+drwxrwxr-x  2 bruno bruno 4096 Jan 18 13:03 data
+-rw-rw-r--  1 bruno bruno    0 Jan 18 13:27 fichierTransfer.txt
+drwxrwxr-x  8 bruno bruno 4096 Jan 18 13:01 .git
+-rw-rw-r--  1 bruno bruno    6 Jan 18 13:01 .gitignore
+drwxrwxr-x  2 bruno bruno 4096 Jan 17 17:27 Guide
+-rw-rw-r--  1 bruno bruno    0 Jan 18 13:01 instalation.sh
+-rwxrwxr-x  1 bruno bruno 2477 Jan 18 13:19 main.sh
+-rw-rw-r--  1 bruno bruno 1430 Jan 18 13:01 README.md
+drwxrwxr-x  2 bruno bruno 4096 Jan 18 13:27 src
