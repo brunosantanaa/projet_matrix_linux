@@ -15,6 +15,8 @@ DATA+=$PWD/data
 fileName=fichierTransfer.txt
 logFile=$DATA/script.log
 
+CKSUM=""
+
 serverUser=matrix1serveur
 IP=192.168.56.103
 
@@ -41,8 +43,9 @@ show_menu(){
 	echo "| 2. Validate File                         |"
 	echo "| 3. Create CKSum                          |"
 	echo "| 4. Transfer File                         |"
-	echo "| 5. View Log                              |"
-	echo "| 6. Exit                                  |"
+	echo "| 5. Verifier le Transfer                  |"
+	echo "| 6. View Log                              |"
+	echo "| 7. Exit                                  |"
 	echo "|                                          |"
 	echo " ------------------------------------------"
 	echo " =========================================="
@@ -64,13 +67,16 @@ read_option(){
 		$SRC/validate.sh $logFile $fileName | tee -a $logFile
 		wait ;;
   3) 
-		$SRC/cksum.sh $logFile $serverUser $IP $fileName | tee -a $logFile
+		CKSUM=$SRC/cksum.sh 0 $fileName | tee -a $logFile
 		wait ;;
   4) 
 		$SRC/send.sh $logFile $serverUser $IP $fileName | tee -a $logFile
 		wait ;;
-  5) viewLog ;;
-  6) sortir ;;
+	5)
+		$SRC/cksum.sh 1 $fileName $CKSUM $serverUser $IP | tee -a $logFile
+		wait ;;
+  6) viewLog ;;
+  7) sortir ;;
   *) echo ERROR ;;
 esac
 
