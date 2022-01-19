@@ -12,8 +12,7 @@ search_ip(){
   echo "A la recherche du $1"
   GAP=3
   
-  #IP=`ifconfig | grep "inet 192.168" | cut -d" " -f10`
-  IP=`ifconfig | grep "inet 10.5" | cut -d" " -f2`
+  IP=`ifconfig | grep "inet 192.168" | cut -d" " -f10`
   E_BYTE=`echo $IP | cut -d"." -f4`
   NET=`echo $IP | cut -d"." -f1,2,3`.
   
