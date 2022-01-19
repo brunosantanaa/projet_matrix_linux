@@ -25,10 +25,10 @@ case $HOSTNAME in
 		IP=client
 		;;
 	"client")
-		IP=server
+		IP=serveur
 		;;
 	*)
-		IP=192.168.56.103
+		IP=serveur
 		;;
 esac
 
