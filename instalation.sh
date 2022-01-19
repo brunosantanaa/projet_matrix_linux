@@ -57,20 +57,6 @@ search_ip(){
       sudo echo -e "$IP_DEF\t$1\n $(</etc/hosts)" > /etc/hosts
     fi
   fi
-  su projet
-  cd ~
-  case $1 in
-  "serveur")
-    ssh-copy-id projet@serveur
-    ;;
-  "client")
-    ssh-keygen
-    ;;
-  *)
-    ssh-keygen
-    ssh-copy-id projet@serveur
-  
-
 }
 
 # Instalation des packages
@@ -84,27 +70,33 @@ case $HOSTNAME in
     echo "--> New user projet"
     sudo useradd -d /home/projet -m projet
     sudo passwd -d projet
-    su projet
+    su projet <<DELIMITER
     cd ~
     echo "--> Searching.."
     search_ip "client"
+    ssh-copy-id projet@serveur
+    DELIMITER
   ;;
   "client")
     echo "--> New user projet"
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
-    su projet
+    su projet <<DELIMITER
     cd ~
     echo "--> Searching.."
     search_ip "serveur"
+    ssh-keygen
+    DELIMITER
   ;;
   *)
     echo "Configuration generique"
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
     search_ip "serveur"
-    su projet
+    su projet <<DELIMITER
     cd ~
-
+    ssh-keygen
+    ssh-copy-id projet@serveur
+    DELIMITER
     ;;
 esac
