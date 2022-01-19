@@ -17,7 +17,7 @@ LOGFILE=$DATA/script.log
 
 CKSUM=""
 
-SERVERUSER=projet
+SERVERUSER=matrix1serveur
 IP=192.168.56.103
 
 ###

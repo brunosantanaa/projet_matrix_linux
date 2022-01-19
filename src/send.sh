@@ -16,4 +16,4 @@ echo "---> Transfering file..." | tee -a $1
 # put $4
 # bye
 #DELIMITER | tee -a $1
-scp $4 $2@$3:/home/projet/$4 | tee -a $1
+scp $4 $2@$3:/home/$2/$4 | tee -a $1
