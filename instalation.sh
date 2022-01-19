@@ -71,14 +71,16 @@ case $HOSTNAME in
     passwd projet < echo -e "\n\n"
 
     search_ip "client"
-    su projet -
+    su projet
+    cd ~
     ssh-keygen
   ;;
   "client")
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
     search_ip "serveur"
-    su projet -
+    su projet
+    cd ~
     ssh-copy-id projet@serveur
   ;;
   *)
@@ -86,7 +88,9 @@ case $HOSTNAME in
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
     search_ip "serveur"
-    su projet -
+    su projet
+    cd ~
+    ssh-keygen
     ssh-copy-id projet@serveur
     ;;
 esac
