@@ -103,7 +103,7 @@ sortir(){
 if [ ! -d $DATA]
 then
 	echo "Create data folder" | tee -a $LOGFILE
-	mkdir data | tee -a $LOGFILE
+	mkdir $DATA | tee -a $LOGFILE
 fi
 
 while true
