@@ -68,20 +68,20 @@ sudo apt-get install -y git openssh-server
 # Chaque machine
 case $HOSTNAME in
   "serveur")
-    sudo adduser -d /home/projet -m projet
+    sudo useradd -d /home/projet -m projet
     search_ip "client"
     su projet -
     ssh-keygen
   ;;
   "client")
-    sudo adduser -d /home/projet -m projet
+    sudo useradd -d /home/projet -m projet
     search_ip "serveur"
     su projet -
     ssh-copy-id projet@serveur
   ;;
   *)
     echo "Configuration generique"
-    sudo adduser -d /home/projet -m projet
+    sudo useradd -d /home/projet -m projet
     search_ip "serveur"
     su projet -
     ssh-copy-id projet@serveur
