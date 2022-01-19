@@ -70,33 +70,33 @@ case $HOSTNAME in
     echo "--> New user projet"
     sudo useradd -d /home/projet -m projet
     sudo passwd -d projet
-    su projet <<DELIMITER
+    su projet << EOF
     cd ~
     echo "--> Searching.."
     search_ip "client"
     ssh-copy-id projet@serveur
-    DELIMITER
+    EOF
   ;;
   "client")
     echo "--> New user projet"
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
-    su projet <<DELIMITER
+    su projet << EOF
     cd ~
     echo "--> Searching.."
     search_ip "serveur"
     ssh-keygen
-    DELIMITER
+    EOF
   ;;
   *)
     echo "Configuration generique"
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
     search_ip "serveur"
-    su projet <<DELIMITER
+    su projet << EOF
     cd ~
     ssh-keygen
     ssh-copy-id projet@serveur
-    DELIMITER
+    EOF
     ;;
 esac
