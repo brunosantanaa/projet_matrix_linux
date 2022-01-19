@@ -20,12 +20,6 @@ CKSUM=""
 SERVERUSER=matrix1-serveur
 IP=server
 
-if [ -d data]
-then
-	echo "Create data folder" | tee -a $LOGFILE
-	mkdir data | tee -a $LOGFILE
-fi
-
 ###
 # Function to VIEW Menu
 show_menu(){
@@ -105,6 +99,13 @@ sortir(){
 
 ################
 #Run the program
+
+if [ ! -d $DATA]
+then
+	echo "Create data folder" | tee -a $LOGFILE
+	mkdir data | tee -a $LOGFILE
+fi
+
 while true
 do
  show_menu
