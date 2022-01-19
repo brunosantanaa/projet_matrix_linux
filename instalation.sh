@@ -8,6 +8,58 @@
 #
 #
 
+search_ip(){
+  echo "A la recherche du $1"
+  GAP=3
+  
+  #IP=`ifconfig | grep "inet 192.168" | cut -d" " -f10`
+  IP=`ifconfig | grep "inet 10.5" | cut -d" " -f2`
+  E_BYTE=`echo $IP | cut -d"." -f4`
+  NET=`echo $IP | cut -d"." -f1,2,3`.
+  
+  MIN=`expr $E_BYTE - $GAP`
+  if [ $MIN -lt 2 ] 
+  then 
+    MIN=2
+  fi
+  MAX=`expr $E_BYTE + $GAP`
+  if [ $MAX -gt 254 ]
+  then 
+    MAX=254 
+  fi
+  
+  declare -a RESP
+  I=0
+  for (( V=$MIN ; V <= $MAX ; V++ )) 
+  do
+    ping $NET$V -c 1 -i 0.2
+    if [ $? -eq 0 ]; then
+      echo "i = $I"
+      RESP[$I]=$NET$V
+      I=`expr $I + 1`
+    fi
+  done
+  
+  I=0
+  if [ $RESP[$I] ]
+  then
+    echo "Choisissez IP $1 dans la liste ou entrez tout autre caractère pour définir une adresse IP."
+    for R in ${RESP[@]}
+    do
+      echo "$I) $R"
+      I=`expr $I + 1`
+    done
+    read RD_IP
+    if [ ${RESP[$RD_IP]} ]
+    then
+      sudo echo -e "${RESP[$RD_IP]}\t$1\n $(</etc/hosts)" > /etc/hosts
+    else
+      read IP_DEF
+      sudo echo -e "$IP_DEF\t$1\n $(</etc/hosts)" > /etc/hosts
+    fi
+  fi
+}
+
 # Instalation des packages
 sudo apt-get install -y git openssh-server 
 
@@ -16,16 +68,22 @@ sudo apt-get install -y git openssh-server
 # Chaque machine
 case $HOSTNAME in
   "serveur")
-    sudo adduser projet
+    sudo adduser -d /home/projet -m projet
+    search_ip "client"
     su projet -
     ssh-keygen
   ;;
   "client")
-    sudo adduser projet
+    sudo adduser -d /home/projet -m projet
+    search_ip "serveur"
     su projet -
-    ssh-copy-id projet@server
+    ssh-copy-id projet@serveur
   ;;
   *)
-    echo "non configuré"
+    echo "Configuration generique"
+    sudo adduser -d /home/projet -m projet
+    search_ip "serveur"
+    su projet -
+    ssh-copy-id projet@serveur
     ;;
 esac
