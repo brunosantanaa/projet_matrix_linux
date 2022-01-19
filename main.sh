@@ -20,7 +20,7 @@ CKSUM=""
 SERVERUSER=matrix1-serveur
 IP=server
 
-if [ ! -d data]
+if [ -d data]
 then
 	echo "Create data folder" | tee -a $LOGFILE
 	mkdir data | tee -a $LOGFILE
