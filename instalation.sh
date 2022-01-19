@@ -5,7 +5,7 @@
 #
 
 # Instalation des packages
-#sudo apt-get install -y git openssh-server 
+sudo apt-get install -y git openssh-server 
 
 # Créez l'utilisateur projet
 
@@ -19,7 +19,7 @@ case $HOSTNAME in
 
   ;;
   "matrix1-serveur")
-    echo "vai"
+    
   ;;
   *)
     echo "non configuré"
