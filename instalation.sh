@@ -97,7 +97,7 @@ case $HOSTNAME in
     sudo -u projet \
     ssh-keygen;\
     ssh-copy-id projet@serveur; \
-    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git /home/projet
+    git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet
     sudo su projet -
     ;;
 esac
