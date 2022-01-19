@@ -72,10 +72,10 @@ case $HOSTNAME in
     sudo passwd -d projet
     echo "--> Searching.."
     search_ip "client";
-    sudo -u projet `cd ~;\
+    sudo -u projet cd ~;\
     ssh-copy-id projet@serveur;\
-    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git; \
-    exit`
+    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git
+    sudo su projet -
   ;;
   "client")
     echo "--> New user projet"
@@ -83,10 +83,10 @@ case $HOSTNAME in
     sudo passwd -d projet
     echo "--> Searching.."
     search_ip "serveur"
-    sudo -u projet `cd ~ ;\
-    ssh-keygen;\
-    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git; \
-    exit`
+    sudo -u projet cd ~ ; \
+    ssh-keygen; \
+    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git
+    sudo su projet -
   ;;
   *)
     echo "Configuration generique"
@@ -94,10 +94,10 @@ case $HOSTNAME in
     sudo passwd -d projet
     echo "--> Searching.."
     search_ip "serveur"
-    su projet `cd ~;\
+    sudo -u projet cd ~;\
     ssh-keygen;\
-    ssh-copy-id projet@serveur;
-    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git; \
-    exit`
+    ssh-copy-id projet@serveur; \
+    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git
+    sudo su projet -
     ;;
 esac
