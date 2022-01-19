@@ -58,7 +58,7 @@ wait(){
 # Function to read keyboard from user
 read_option(){
  local option
- read -p "| Option (1-6) --------------------> " option
+ read -p "| Option (1-7) --------------------> " option
  case $option in
   1) 
 		$SRC/create_file.sh $LOGFILE $FILENAME | tee -a $LOGFILE
@@ -100,9 +100,9 @@ sortir(){
 ################
 #Run the program
 
-if [ ! -d $DATA]
+if [ ! -d $DATA ]
 then
-	echo "Create data folder" | tee -a $LOGFILE
+	echo "Create data folder"
 	mkdir $DATA | tee -a $LOGFILE
 fi
 
