@@ -21,7 +21,7 @@ CKSUM=""
 USERNAME=projet
 
 case $HOSTNAME in
-	"server")
+	"serveur")
 		IP=client
 		;;
 	"client")
