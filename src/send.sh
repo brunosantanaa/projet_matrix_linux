@@ -17,9 +17,3 @@ echo "---> Transfering file..." | tee -a $1
 # bye
 #DELIMITER | tee -a $1
 scp $4 $2@$3:/home/projet/$4 | tee -a $1
-if [ $? = 0 ]
-then
-  echo "---> Transfered" | tee -a $1
-else
-  echo "---> ERROR" | tee -a $1
-fi
