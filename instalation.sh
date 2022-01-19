@@ -70,30 +70,34 @@ case $HOSTNAME in
     echo "--> New user projet"
     sudo useradd -d /home/projet -m projet
     sudo passwd -d projet
+    echo "--> Searching.."
+    search_ip "client";
     sudo -u projet `cd ~;\
-    echo "--> Searching..";\
-    search_ip "client";\
     ssh-copy-id projet@serveur;\
-    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git`
+    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git; \
+    exit`
   ;;
   "client")
     echo "--> New user projet"
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
+    echo "--> Searching.."
+    search_ip "serveur"
     sudo -u projet `cd ~ ;\
-    echo "--> Searching..";\
-    search_ip "serveur";\
     ssh-keygen;\
-    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git`
+    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git; \
+    exit`
   ;;
   *)
     echo "Configuration generique"
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
+    echo "--> Searching.."
     search_ip "serveur"
     su projet `cd ~;\
     ssh-keygen;\
     ssh-copy-id projet@serveur;
-    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git`
+    git clone https://github.com/brunosantanaa/projet_maitrx_linux.git; \
+    exit`
     ;;
 esac
