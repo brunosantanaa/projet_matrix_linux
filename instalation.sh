@@ -57,6 +57,20 @@ search_ip(){
       sudo echo -e "$IP_DEF\t$1\n $(</etc/hosts)" > /etc/hosts
     fi
   fi
+  su projet
+  cd ~
+  case $1 in
+  "serveur")
+    ssh-copy-id projet@serveur
+    ;;
+  "client")
+    ssh-keygen
+    ;;
+  *)
+    ssh-keygen
+    ssh-copy-id projet@serveur
+  
+
 }
 
 # Instalation des packages
@@ -67,21 +81,22 @@ sudo apt-get install -y git openssh-server
 # Chaque machine
 case $HOSTNAME in
   "serveur")
+    echo "--> New user projet"
     sudo useradd -d /home/projet -m projet
-    passwd projet < echo -e "\n\n"
-
-    search_ip "client"
+    sudo passwd -d projet
     su projet
     cd ~
-    ssh-keygen
+    echo "--> Searching.."
+    search_ip "client"
   ;;
   "client")
+    echo "--> New user projet"
     sudo useradd -d /home/projet -s /bin/bash -m projet
     sudo passwd -d projet
-    search_ip "serveur"
     su projet
     cd ~
-    ssh-copy-id projet@serveur
+    echo "--> Searching.."
+    search_ip "serveur"
   ;;
   *)
     echo "Configuration generique"
@@ -90,7 +105,6 @@ case $HOSTNAME in
     search_ip "serveur"
     su projet
     cd ~
-    ssh-keygen
-    ssh-copy-id projet@serveur
+
     ;;
 esac
