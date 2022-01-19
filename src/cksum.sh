@@ -17,6 +17,7 @@ case $2 in
   SHA_CLIENT=`cksum $3 | cut -d" " -f1`
   echo $SHA_CLIENT
   echo "cksum = $SHA_CLIENT" | tee -a $1
+  break
   ;;
 1)
   echo "---> Compair CKSUM file..." | tee -a $1
@@ -34,8 +35,10 @@ case $2 in
   else
     echo "Il y a peut-être eu une erreur dans le transfert" | tee -a $1
   fi
+  break
   ;;
 *)
   echo "COMMAND ERROR" | tee -a $1
+  break
  ;;
- esac
+esac
