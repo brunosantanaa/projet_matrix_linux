@@ -61,19 +61,19 @@ read_option(){
  read -p "| Option (1-7) --------------------> " option
  case $option in
   1) 
-		$SRC/create_file.sh $LOGFILE $FILENAME | tee -a $LOGFILE
+		$SRC/create_file.sh $LOGFILE $FILENAME
 		wait;;
   2) 
-		$SRC/validate.sh $LOGFILE $FILENAME | tee -a $LOGFILE
+		$SRC/validate.sh $LOGFILE $FILENAME
 		wait ;;
   3) 
-		CHECKSUM=`$SRC/cksum.sh $LOGFILE 0 $FILENAME` | tee -a $LOGFILE
+		CHECKSUM=`$SRC/cksum.sh $LOGFILE 0 $FILENAME`
 		wait ;;
   4) 
-		$SRC/send.sh $LOGFILE $SERVERUSER $IP $FILENAME | tee -a $LOGFILE
+		$SRC/send.sh $LOGFILE $SERVERUSER $IP $FILENAME
 		wait ;;
 	5)
-		$SRC/cksum.sh $LOGFILE 1 $FILENAME $CKSUM $SERVERUSER $IP | tee -a $LOGFILE
+		$SRC/cksum.sh $LOGFILE 1 $FILENAME $CKSUM $SERVERUSER $IP
 		wait ;;
   6) viewLog ;;
   7) sortir ;;
