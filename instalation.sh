@@ -58,7 +58,7 @@ search_ip(){
     fi
   fi
 }
-msg_inti(){
+msg_init(){
   echo
   echo
   echo "Ecrivez pour debuté:"
