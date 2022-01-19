@@ -32,7 +32,7 @@ search_ip(){
   for (( V=$MIN ; V <= $MAX ; V++ )) 
   do
     ping $NET$V -c 1 -i 0.2
-    if [ $? -eq 0 ]; then
+    if [ $? -eq 0 -a $NET$V != $IP ]; then
       echo "i = $I"
       RESP[$I]=$NET$V
       I=`expr $I + 1`
