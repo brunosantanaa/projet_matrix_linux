@@ -7,6 +7,7 @@
 #
 #
 #
+
 ###
 #Variables
 PWD=$(pwd)
@@ -17,8 +18,19 @@ LOGFILE=$DATA/script.log
 
 CKSUM=""
 
-SERVERUSER=matrix1serveur
-IP=192.168.56.103
+USERNAME=projet
+
+case $HOSTNAME in
+	"server")
+		IP=client
+		;;
+	"client")
+		IP=server
+		;;
+	*)
+		IP=192.168.56.103
+		;;
+esac
 
 ###
 # Function to VIEW Menu
@@ -55,6 +67,22 @@ wait(){
 	read -p "Enter to cont..." READ
 }
 
+###
+#Function to visualise log
+viewLog(){
+	echo "---> View log: "$LOGFILE | tee -a $LOGFILE
+	cat $LOGFILE 
+	wait
+}
+
+###
+#Function to exit the program
+sortir(){
+	echo "---> Exiting..." | tee -a $LOGFILE
+	clear
+	exit 1
+}
+
 # Function to read keyboard from user
 read_option(){
  local option
@@ -72,10 +100,10 @@ read_option(){
 		echo "cksum = $CHECKSUM" | tee -a $LOGFILE
 		wait ;;
   4) 
-		$SRC/send.sh $LOGFILE $SERVERUSER $IP $FILENAME
+		$SRC/send.sh $LOGFILE $USERNAME $IP $FILENAME
 		wait ;;
 	5)
-		$SRC/cksum.sh $LOGFILE 1 $FILENAME $CKSUM $SERVERUSER $IP
+		$SRC/cksum.sh $LOGFILE 1 $FILENAME $CKSUM $USERNAME $IP
 		wait ;;
   6) viewLog ;;
   7) sortir ;;
@@ -84,28 +112,13 @@ esac
 
 }
 
-###
-#Function to visualise log
-viewLog(){
-	echo "---> View log: "$LOGFILE | tee -a $LOGFILE
-	cat $LOGFILE 
-	wait
-}
-###
-#Function to exit the program
-sortir(){
-	echo "---> Exiting..." | tee -a $LOGFILE
-	clear
-	exit 1
-}
-
 ################
 #Run the program
 
 if [ ! -d $DATA ]
 then
-	echo "Create data folder"
-	mkdir $DATA | tee -a $LOGFILE
+	mkdir $DATA
+	echo "<--- Create data folder" | tee -a $LOGFILE
 fi
 
 while true
