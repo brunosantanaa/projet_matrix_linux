@@ -21,7 +21,7 @@ SERVERUSER=matrix1-serveur
 IP=server
 
 if [ ! -d data]
-do
+then
 	mkdir data
 fi
 
