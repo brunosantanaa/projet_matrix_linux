@@ -12,13 +12,18 @@
 PWD=$(pwd)
 SRC+=$PWD/src
 DATA+=$PWD/data
-fileName=fichierTransfer.txt
-logFile=$DATA/script.log
+FILENAME=fichierTransfer.txt
+LOGFILE=$DATA/script.log
 
 CKSUM=""
 
-serverUser=matrix1serveur
-IP=192.168.56.103
+SERVERUSER=matrix1-serveur
+IP=server
+
+if [ ! -d data]
+do
+	mkdir data
+fi
 
 ###
 # Function to VIEW Menu
@@ -61,19 +66,19 @@ read_option(){
  read -p "| Option (1-6) --------------------> " option
  case $option in
   1) 
-		$SRC/create_file.sh $logFile $fileName | tee -a $logFile
+		$SRC/create_file.sh $LOGFILE $FILENAME | tee -a $LOGFILE
 		wait;;
   2) 
-		$SRC/validate.sh $logFile $fileName | tee -a $logFile
+		$SRC/validate.sh $LOGFILE $FILENAME | tee -a $LOGFILE
 		wait ;;
   3) 
-		CHECKSUM=`$SRC/cksum.sh 0 $fileName` | tee -a $logFile
+		CHECKSUM=`$SRC/cksum.sh $LOGFILE 0 $FILENAME` | tee -a $LOGFILE
 		wait ;;
   4) 
-		$SRC/send.sh $logFile $serverUser $IP $fileName | tee -a $logFile
+		$SRC/send.sh $LOGFILE $SERVERUSER $IP $FILENAME | tee -a $LOGFILE
 		wait ;;
 	5)
-		$SRC/cksum.sh 1 $fileName $CKSUM $serverUser $IP | tee -a $logFile
+		$SRC/cksum.sh $LOGFILE 1 $FILENAME $CKSUM $SERVERUSER $IP | tee -a $LOGFILE
 		wait ;;
   6) viewLog ;;
   7) sortir ;;
@@ -85,14 +90,14 @@ esac
 ###
 #Function to visualise log
 viewLog(){
-	echo "---> View log: "$logFile | tee -a $logFile
-	cat $logFile 
+	echo "---> View log: "$LOGFILE | tee -a $LOGFILE
+	cat $LOGFILE 
 	wait
 }
 ###
 #Function to exit the program
 sortir(){
-	echo "---> Exiting..." | tee -a $logFile
+	echo "---> Exiting..." | tee -a $LOGFILE
 	clear
 	exit 1
 }

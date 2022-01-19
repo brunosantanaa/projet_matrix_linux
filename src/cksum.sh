@@ -5,28 +5,28 @@
 # Description: 
 # Example: 
 #  Pour générer le checksum
-#   cksum.sh 0 <nomefichier>
+#   cksum.sh <fichierlog> 0 <nomefichier>
 #  Pour vérifier l'intégrité du fichier transféré
-#   cksum.sh 1 <nomefichier> <nomeutilisateurremote> <IP>
+#   cksum.sh <fichierlog> 1 <nomefichier> <nomeutilisateurremote> <IP>
 #
 #
 
-echo "---> Creating CKSUM file..."
-case $1 in
+echo "---> Creating CKSUM file..." | tee -a $1
+case $2 in
 0)
-  SHA_CLIENT=`cksum $2 | cut -d" " -f1`
+  SHA_CLIENT=`cksum $3 | cut -d" " -f1` ; cksum $3 | cut -d" " -f1 | tee -a $1
   ;;
 1)
-  SHA_CLIENT=`cksum $2 | cut -d" " -f1`
-  SHA_SERVEUR=`ssh $3@$4 "cksum $2 | cut -d' ' -f1"`
+  SHA_CLIENT=`cksum $3 | cut -d" " -f1` ; cksum $3 | cut -d" " -f1 | tee -a $1
+  SHA_SERVEUR=`ssh $4@$5 "cksum $3 | cut -d' ' -f1"` ; ssh $4@$5 "cksum $3 | cut -d' ' -f1" | tee -a $1
   if [ $SHA_SERVEUR = $SHA_CLIENT ]
   then
-    echo "Transfert effectué avec succès"
+    echo "Transfert effectué avec succès" | tee -a $1
   else
-    echo "Il y a peut-être eu une erreur dans le transfert"
+    echo "Il y a peut-être eu une erreur dans le transfert" | tee -a $1
   fi
   ;;
 *)
-  echo "COMMAND ERROR"
+  echo "COMMAND ERROR" | tee -a $1
  ;;
  esac

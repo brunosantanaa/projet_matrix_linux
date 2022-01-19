@@ -15,4 +15,4 @@ echo "---> Validating file..." | tee -a $1
 sftp $2@$3 <<DELIMITER
  put $4
  bye
-DELIMITER
+DELIMITER | tee -a $1
