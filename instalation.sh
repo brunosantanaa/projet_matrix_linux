@@ -73,8 +73,10 @@ case $HOSTNAME in
     echo "--> Searching.."
     search_ip "client";
     sudo -u projet \
-    ssh-copy-id projet@serveur;\
-    git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux
+    ssh-copy-id projet@serveur \
+    git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux \
+    sudo chown -R projet:projet /home/projet/projet_linux/* \
+    mv /home/projet/projet_linux/* /home/projet
     sudo su projet -
   ;;
   "client")
@@ -84,8 +86,10 @@ case $HOSTNAME in
     echo "--> Searching.."
     search_ip "serveur"
     sudo -u projet \
-    ssh-keygen; \
-    git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux
+    ssh-keygen \
+    git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux \
+    sudo chown -R projet:projet /home/projet/projet_linux/* \
+    mv /home/projet/projet_linux/* /home/projet
     sudo su projet -
   ;;
   *)
@@ -95,9 +99,11 @@ case $HOSTNAME in
     echo "--> Searching.."
     search_ip "serveur"
     sudo -u projet \
-    ssh-keygen;\
-    ssh-copy-id projet@serveur; \
-    git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux
+    ssh-keygen \
+    ssh-copy-id projet@serveur \
+    git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux \
+    sudo chown -R projet:projet /home/projet/projet_linux/* \
+    mv /home/projet/projet_linux/* /home/projet
     sudo su projet -
     ;;
 esac
