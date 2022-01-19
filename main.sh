@@ -22,7 +22,8 @@ IP=server
 
 if [ ! -d data]
 then
-	mkdir data
+	echo "Create data folder" | tee -a $LOGFILE
+	mkdir data | tee -a $LOGFILE
 fi
 
 ###
