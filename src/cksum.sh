@@ -11,14 +11,23 @@
 #
 #
 
-echo "---> Creating CKSUM file..." | tee -a $1
 case $2 in
 0)
-  SHA_CLIENT=`cksum $3 | cut -d" " -f1` ; cksum $3 | cut -d" " -f1 | tee -a $1
+  echo "---> Creating CKSUM file..." | tee -a $1
+  SHA_CLIENT=`cksum $3 | cut -d" " -f1`
+  echo $SHA_CLIENT
+  echo "cksum = $SHA_CLIENT" | tee -a $1
   ;;
 1)
+  echo "---> Compair CKSUM file..." | tee -a $1
+  
   SHA_CLIENT=`cksum $3 | cut -d" " -f1` ; cksum $3 | cut -d" " -f1 | tee -a $1
   SHA_SERVEUR=`ssh $4@$5 "cksum $3 | cut -d' ' -f1"` ; ssh $4@$5 "cksum $3 | cut -d' ' -f1" | tee -a $1
+  
+  echo "FILE = $3" | tee -a $1
+  echo "cksum CLIENT = $SHA_CLIENT" | tee -a $1
+  echo "cksum SERVER = $SHA_SERVEUR" | tee -a $1
+  
   if [ $SHA_SERVEUR = $SHA_CLIENT ]
   then
     echo "Transfert effectué avec succès" | tee -a $1

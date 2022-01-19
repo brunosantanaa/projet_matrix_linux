@@ -19,3 +19,5 @@ if [ -e $2 ]; then
 else
 	echo "File does not exists" | tee -a $1
 fi
+
+stat $2 | tee -a $1

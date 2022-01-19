@@ -11,8 +11,15 @@
 # quit
 #
 
-echo "---> Validating file..." | tee -a $1
-sftp $2@$3 <<DELIMITER
- put $4
- bye
-DELIMITER | tee -a $1
+echo "---> Transfering file..." | tee -a $1
+#sftp $2@$3 <<DELIMITER
+# put $4
+# bye
+#DELIMITER | tee -a $1
+scp $4 $2@$3:/home/projet/$4 | tee -a $1
+if [ $? = 0 ]
+then
+  echo "---> Transfered" | tee -a $1
+else
+  echo "---> ERROR" | tee -a $1
+fi

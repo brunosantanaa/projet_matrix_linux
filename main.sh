@@ -12,7 +12,7 @@
 PWD=$(pwd)
 SRC+=$PWD/src
 DATA+=$PWD/data
-FILENAME=fichierTransfer.txt
+FILENAME=test.txt
 LOGFILE=$DATA/script.log
 
 CKSUM=""
