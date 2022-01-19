@@ -67,7 +67,9 @@ read_option(){
 		$SRC/validate.sh $LOGFILE $FILENAME
 		wait ;;
   3) 
+	  echo "---> Creating CKSUM file..." | tee -a $1
 		CHECKSUM=`$SRC/cksum.sh $LOGFILE 0 $FILENAME`
+		echo "cksum = $CHECKSUM" | tee -a $1
 		wait ;;
   4) 
 		$SRC/send.sh $LOGFILE $SERVERUSER $IP $FILENAME

@@ -13,9 +13,7 @@
 
 case $2 in
 0)
-  echo "---> Creating CKSUM file..." | tee -a $1
-  SHA_CLIENT=`cksum $3 | cut -d" " -f1`
-  echo "cksum = $SHA_CLIENT" | tee -a $1
+  cksum $3 | cut -d" " -f1
   ;;
 1)
   echo "---> Compair CKSUM file..." | tee -a $1
