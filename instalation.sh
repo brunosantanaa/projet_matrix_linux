@@ -58,7 +58,15 @@ search_ip(){
     fi
   fi
 }
-
+msg_inti(){
+  echo
+  echo
+  echo "Ecrivez pour debuté:"
+  echo -e "\t cd ~"
+  echo
+  echo
+  sudo su projet -
+}
 # Instalation des packages
 sudo apt-get install -y git openssh-server 
 
@@ -77,7 +85,7 @@ case $HOSTNAME in
     git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux ;\
     sudo chown -R projet:projet /home/projet/projet_linux/* ;\
     mv /home/projet/projet_linux/* /home/projet
-    sudo su projet -
+    msg_init
   ;;
   "client")
     echo "--> New user projet"
@@ -90,7 +98,7 @@ case $HOSTNAME in
     git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux ;\
     sudo chown -R projet:projet /home/projet/projet_linux/* ;\
     mv /home/projet/projet_linux/* /home/projet
-    sudo su projet -
+    msg_init
   ;;
   *)
     echo "Configuration generique"
@@ -104,6 +112,6 @@ case $HOSTNAME in
     git clone https://github.com/brunosantanaa/projet_matrix_linux.git /home/projet/projet_linux ;\
     sudo chown -R projet:projet /home/projet/projet_linux/* ;\
     mv /home/projet/projet_linux/* /home/projet
-    sudo su projet -
+    msg_init
     ;;
 esac
