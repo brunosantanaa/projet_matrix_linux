@@ -51,10 +51,10 @@ search_ip(){
     read RD_IP
     if [ ${RESP[$RD_IP]} ]
     then
-      sudo echo -e "${RESP[$RD_IP]}\t$1\n $(</etc/hosts)" > /etc/hosts
+      sudo echo -e "${RESP[$RD_IP]}\t$1\n$(</etc/hosts)" > /etc/hosts
     else
       read IP_DEF
-      sudo echo -e "$IP_DEF\t$1\n $(</etc/hosts)" > /etc/hosts
+      sudo echo -e "$IP_DEF\t$1\n$(</etc/hosts)" > /etc/hosts
     fi
   fi
 }
@@ -68,7 +68,7 @@ msg_init(){
   sudo su projet -
 }
 # Instalation des packages
-sudo apt-get install -y git openssh-server 
+sudo apt-get install -y git openssh-server net-tools
 
 # Créez l'utilisateur projet
 
