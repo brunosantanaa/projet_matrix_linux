@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script: cksum.sh
+# Script: main.sh
 # Author: Bruno de Santana | Kevin Clovel | Mario Camelo
 # Date: 24/01/2022
 # Description: 

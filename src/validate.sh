@@ -1,9 +1,9 @@
 #!/bin/bash
-# Script: cksum.sh
+# Script: validate.sh
 # Author: Bruno de Santana | Kevin Clovel | Mario Camelo
 # Date: 17/01/2022
 # Description: 
-#
+#  
 #
 #
 #
